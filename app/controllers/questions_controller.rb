@@ -17,11 +17,14 @@ class QuestionsController < ApplicationController
     # Which director has the most movies on the list?
 
     # Your Ruby goes here.
-    # Number_movies = Hash.new
-    # Director.movies.each do |v|
-    #   Number_movies[Director.id] = v.count
-    # end
-    # @director_with_the_most_movies = Most_movies.first.id
+
+  movie_counts= {}
+
+  Director.all.each do |the_director|
+    movie_counts[the_director.name] = the_director.movies.count
+  end
+
+    @director_with_the_most_movies = movie_counts.max_by{|k,v| v}.first
   end
 
   def question_4
@@ -29,11 +32,18 @@ class QuestionsController < ApplicationController
     # (If there's a tie, any one of them is fine)
 
     # Your Ruby goes here.
+  actor_counts= {}
 
-    # @actor_with_the_most_movies = ???
+  Actor.all.each do |the_actor|
+    actor_counts[the_actor.name] = the_actor.movies.count
+  end
+
+    @actor_with_the_most_movies = actor_counts.max_by{|k,v| v}.first
   end
 
   def question_5
+
+
     # This one is hard. Work on it after all your other review is complete.
 
     # Which actor/director pair has the most movies on the list?
