@@ -50,9 +50,16 @@ class QuestionsController < ApplicationController
     # (If there's a tie, any pair of them is fine)
 
     # Your Ruby goes here.
+    most_combo= {}
+    most_director = {}
+    Actor.all.each do |the_actor|
+      the_actor.movies.each do |movie|
+        most_combo =the_actor.movies.where(:director_id => movie.director_id).count
+      end
+    end
 
     # @actor = ???
     # @director = ???
     # @movies_together = ???
-  end
+
 end
